@@ -1,7 +1,5 @@
-// Wrap all code that interacts with the DOM in a call to jQuery to ensure that
-// the code isn't run until the browser has finished rendering all the elements
-// in the html.
 $(function () {
+  createTimeSlots();
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
   // local storage. HINT: What does `this` reference in the click listener
@@ -21,3 +19,36 @@ $(function () {
   //
   // TODO: Add code to display the current date in the header of the page.
 });
+
+function createHourContainer(hour) {
+  var hourContainer = $("<div>");
+  hourContainer.addClass("row time-block past");
+  hourContainer.attr("id", "hour-"+hour);
+  $(".container-fluid").append(hourContainer);
+
+  var hourLabel = $("<div>");
+  hourLabel.addClass("col-2 col-md-1 hour text-center py-3");
+  hourLabel.text(hour+"AM");
+  hourContainer.append(hourLabel);
+
+  var textArea = $("<textarea>");
+  textArea.addClass("col-8 col-md-10 description");
+  textArea.attr("rows", "3");
+  hourContainer.append(textArea);
+
+  var button = $("<button>");
+  button.addClass("btn saveBtn col-2 col-md-1");
+  button.attr("aria-label", "save");
+  hourContainer.append(button);
+
+  var buttonImage = $("<i>");
+  buttonImage.addClass("fas fa-save");
+  buttonImage.attr("aria-hidden", "true");
+  button.append(buttonImage);
+}
+
+function createTimeSlots() {
+  for (var hour=9; hour <= 17; hour++){
+    createHourContainer(hour);
+  }
+}

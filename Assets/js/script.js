@@ -1,4 +1,5 @@
 $(function () {
+  updateDate();
   createTimeSlots();
   updateTimeslot();
   // TODO: Add a listener for click events on the save button. This code should
@@ -20,6 +21,11 @@ $(function () {
   //
   // TODO: Add code to display the current date in the header of the page.
 });
+
+function updateDate() {
+  var date = dayjs().format("dddd, MMMM Do");
+  $("#currentDay").text(date);
+}
 
 function createHourContainer(hour) {
   var hourContainer = $("<div>");

@@ -23,12 +23,12 @@ $(function () {
 function createHourContainer(hour) {
   var hourContainer = $("<div>");
   hourContainer.addClass("row time-block past");
-  hourContainer.attr("id", "hour-"+hour);
+  hourContainer.attr("id", "hour-" + hour);
   $(".container-fluid").append(hourContainer);
 
   var hourLabel = $("<div>");
   hourLabel.addClass("col-2 col-md-1 hour text-center py-3");
-  hourLabel.text(hour+"AM");
+  hourLabel.text(convert24to12(hour));
   hourContainer.append(hourLabel);
 
   var textArea = $("<textarea>");
@@ -48,7 +48,22 @@ function createHourContainer(hour) {
 }
 
 function createTimeSlots() {
-  for (var hour=9; hour <= 17; hour++){
+  for (var hour = 9; hour <= 17; hour++) {
     createHourContainer(hour);
+  }
+}
+
+function convert24to12(hour) {
+  if (hour === 0) {
+    return (hour+12) + "AM";
+  }
+  if (hour < 12) {
+    return hour + "AM";
+  }
+  if (hour === 12) {
+    return hour + "PM";
+  }
+  if (hour > 12) {
+    return (hour-12) + "PM";
   }
 }

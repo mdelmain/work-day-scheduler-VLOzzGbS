@@ -1,5 +1,6 @@
 $(function () {
   createTimeSlots();
+  updateTimeslot();
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
   // local storage. HINT: What does `this` reference in the click listener
@@ -55,7 +56,7 @@ function createTimeSlots() {
 
 function convert24to12(hour) {
   if (hour === 0) {
-    return (hour+12) + "AM";
+    return hour + 12 + "AM";
   }
   if (hour < 12) {
     return hour + "AM";
@@ -64,6 +65,26 @@ function convert24to12(hour) {
     return hour + "PM";
   }
   if (hour > 12) {
-    return (hour-12) + "PM";
+    return hour - 12 + "PM";
+  }
+}
+
+function getHour() {
+  return dayjs().hour();
+}
+
+function updateTimeslot() {
+  var currentHour = 12;
+  for (var hour = 9; hour <= 17; hour++) {
+    $("#hour-" + hour).removeClass("present future past");
+    if (hour < currentHour) {
+      $("#hour-" + hour).addClass("past");
+    }
+    if (hour === currentHour) {
+      $("#hour-" + hour).addClass("present");
+    }
+    if (hour > currentHour) {
+      $("#hour-" + hour).addClass("future");
+    }
   }
 }

@@ -2,6 +2,7 @@ $(function () {
   updateDate();
   createTimeSlots();
   updateTimeslot();
+  addSaveHandlers();
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
   // local storage. HINT: What does `this` reference in the click listener
@@ -93,4 +94,12 @@ function updateTimeslot() {
       $("#hour-" + hour).addClass("future");
     }
   }
+}
+
+function addSaveHandlers() {
+  $(".saveBtn").click(function () {
+    var key = $(this).parent().get(0).id;
+    var value = $(this).parent().find("textarea").get(0).value;
+    localStorage.setItem(key, value);
+  });
 }

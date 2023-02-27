@@ -15,16 +15,17 @@
 </head>
 
 <body>
-  <header class="p-5 mb-4">
+  <header class="p-4">
     <h1 class="display-3">Work Day Scheduler</h1>
     <p class="lead">A simple calendar app for scheduling your work day</p>
-    <p id="currentDay" class="lead"></p>
+    <p id="currentDay" class="lead mb-0"></p>
   </header>
   <div class="container-fluid px-5">
-    <div>
+    <div id="savenotification">
       <span class="notification"></span> 
       <span class="localstoragetext"></span>
       <span class="check"></span>
+    </div>
   </div>
  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

@@ -85,7 +85,6 @@ function addSaveHandlers() {
     var value = $(this).parent().find("textarea").get(0).value;
     localStorage.setItem(key, value);
 
-    
     var notification = $(".notification");
     notification.text("Appointment added to");
     var localStorageText = $(".localstoragetext");
